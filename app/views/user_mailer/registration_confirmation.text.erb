@@ -1,0 +1,8 @@
+Hi <%= @user.first_name.capitalize %>,
+
+Thanks for registering! To confirm your registration click the URL below.
+
+<%=  link_to "confirm", confirm_email_url(@user.email_token)%>
+
+Sincerely,
+The SMX Team

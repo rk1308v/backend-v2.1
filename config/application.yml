@@ -1,0 +1,155 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# Add configuration values here
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Email values
+EMAIL_USERNAME: 'support@smxmoney.com'
+EMAIL_PASSWORD: ''
+DOMAIN: 'smxmoney.com'
+
+# Application global Varialbes
+ENCRYPTION_KEY: 0cb8a1c782944e96f7ccf6e711762721
+SEGOVIA_SECRET: AxdP2So5xigjTFOLFHR7d4oKJM3jvs11Zqn0lU3hyjZC
+SEGOVIA_CALLBACK_URL: https://sewoa-p2p-money-api-us1.smx.online/api/v1/post_segovia_params
+FCM_SERVER_KEY: AIzaSyDkwmTmDbSqzYWUeRD3fudKm_QnQE--6ZQ
+TRANSFER_TO_SERVICE_NAME: 'transfer_to'
+SEGOVIA_SERVICE_NAME: 'segovia'
+SMX_SERVICE_NAME: 'smx_to_smx'
+SMX_NON_SMX_SERVICE_NAME: 'smx_non_smx'
+SMX_SMX_PAYOUT_SERVICE: 'SMX Account'
+LETTER_IMAGES: 'https://s3-us-west-2.amazonaws.com/smx-image-bucket/images/pictures/avatars/default/letters'
+PAYMENT_PROCESSOR: 'stripe'
+
+# Webpage domain hostname
+WEB_DOMAIN: 'www.smxmoney.com'
+
+GMAIL_USERNAME: ''
+GMAIL_PASSWORD: ''
+
+test: # or staging
+  TWILIO_SID: AKIAJCBRNXXUQ
+  TWILIO_TOKEN: AKIAJRNXXUQ
+  TWILIO_TELEPHONE: "+16466669649"
+
+development:
+  # Application domain hostnames
+  APP_DOMAIN: 'http://localhost:3000'   # Application main domain hostname
+  ADMIN_DOMAIN: 'http://localhost:3000' # Admin Portal domain hostname
+
+  # API Keys
+  USER_API_KEY: 'wPeLkTYGTddjBhvLrMsjnDbjFd4D9Y'
+  ADMIN_API_KEY: 'm9UUohjs0kqYTn9yvIQHTw'
+  MASTER_API_KEY: 'lWVS-wENW5vS7zfkjvNq6BGa9ko-LA'
+  
+  # Mailer configuration values
+  SMTP_HOST: 'smtp-pulse.com'
+  SMTP_PORT: '465'
+  SMTP_USERNAME: 'accounts@smx.money'
+  SMTP_PASSWORD: 'qtkpc3A3mj39iDP'
+  # SMTP_HOST: 'smtp.gmail.com'
+  # SMTP_PORT: '465'
+  # SMTP_USERNAME: 'smxapp11@gmail.com'
+  # SMTP_PASSWORD: 'yyejycylmoefdbpx'
+
+  # Twilio configuration values
+  TWILIO_SID: AC471717511e2f79c52c83ce253432e6b9
+  TWILIO_TOKEN: ceee1f8b2e0f40a781605889df481b90 
+  TWILIO_TELEPHONE: "+16466669649"
+
+  # AWS configuration variables to store paperclips image file on S3
+  S3_BUCKET_NAME: smx-image-bucket
+  AWS_ACCESS_KEY_ID: AKIAIRLBOWSVRNZTAOOA
+  AWS_SECRET_ACCESS_KEY: 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
+  AWS_REGION: us-west-2
+
+  # APILAYER configuration
+  APILAYER_HOST: 'http://apilayer.net/api'
+  APILAYER_LIVE_URI: '/live'
+  APILAYER_ACCESS_KEY: "5c11cd2ba7694a58b41e41cd2916eceb"
+
+  # Stripe configuration
+  stripe_secret_key: 'sk_test_d5Yy0gi4fsMbERNeU9lWJb3V'
+  stripe_publishable_key: 'pk_test_idVcTQhmG9oYcwz9iX07soWj'
+
+staging:
+  # Application domain hostnames
+  APP_DOMAIN: 'http://107.22.146.137'   # Application main domain hostname
+  ADMIN_DOMAIN: 'http://107.22.146.137' # Admin Portal domain hostname
+
+  # API Keys
+  USER_API_KEY: 'wPeLkTYGTddjBhvLrMsjnDbjFd4D9Y'
+  ADMIN_API_KEY: 'm9UUohjs0kqYTn9yvIQHTw'
+  MASTER_API_KEY: 'lWVS-wENW5vS7zfkjvNq6BGa9ko-LA'
+
+  # Mailer configuration values
+  SMTP_HOST: 'smtp-pulse.com'
+  SMTP_PORT: '465'
+  SMTP_USERNAME: 'accounts@smx.money'
+  SMTP_PASSWORD: 'qtkpc3A3mj39iDP'
+  # SMTP_HOST: 'smtp.zoho.com'
+  # SMTP_PORT: '465'
+  # SMTP_USERNAME: 'support@smxmoney.com'
+  # SMTP_PASSWORD: 'smxMaddas1!'
+
+  # Twilio configuration values
+  TWILIO_SID: AC471717511e2f79c52c83ce253432e6b9
+  TWILIO_TOKEN: ceee1f8b2e0f40a781605889df481b90 
+  TWILIO_TELEPHONE: "+16466669649"
+
+  # AWS configuration variables to store paperclips image file on S3
+  S3_BUCKET_NAME: smx-image-bucket
+  AWS_ACCESS_KEY_ID: AKIAIRLBOWSVRNZTAOOA
+  AWS_SECRET_ACCESS_KEY: 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
+  AWS_REGION: us-west-2
+
+  # APILAYER configuration
+  APILAYER_HOST: 'http://apilayer.net/api'
+  APILAYER_LIVE_URI: '/live'
+  APILAYER_ACCESS_KEY: "5c11cd2ba7694a58b41e41cd2916eceb"
+
+  # Stripe configuration
+  stripe_secret_key: 'sk_test_d5Yy0gi4fsMbERNeU9lWJb3V'
+  stripe_publishable_key: 'pk_test_idVcTQhmG9oYcwz9iX07soWj'
+
+  # SMTP Service
+  SMTP_SERVER: 'smtp.zoho.com'
+  # SMTP_SERVER: 'smtp-pulse.com'
+
+production:
+  # Application domain hostnames
+  APP_DOMAIN: 'https://smxmoney.com'   # Application main domain hostname
+  ADMIN_DOMAIN: 'https://smxmoney.com' # Admin Portal domain hostname
+
+  # API Keys
+  USER_API_KEY: 'wPeLkTYGTddjBhvLrMsjnDbjFd4D9Y'
+  ADMIN_API_KEY: 'm9UUohjs0kqYTn9yvIQHTw'
+  MASTER_API_KEY: 'lWVS-wENW5vS7zfkjvNq6BGa9ko-LA'
+
+  # Mailer configuration values
+  SMTP_HOST: 'smtp-pulse.com'
+  SMTP_PORT: '465'
+  SMTP_USERNAME: 'accounts@smx.money'
+  SMTP_PASSWORD: 'qtkpc3A3mj39iDP'
+  
+  # Twilio configuration values
+  TWILIO_SID: AC471717511e2f79c52c83ce253432e6b9
+  TWILIO_TOKEN: ceee1f8b2e0f40a781605889df481b90 
+  TWILIO_TELEPHONE: "+16466669649"
+
+  # AWS configuration variables to store paperclips image file on S3
+  S3_BUCKET_NAME: smx-image-bucket
+  AWS_ACCESS_KEY_ID: AKIAIRLBOWSVRNZTAOOA
+  AWS_SECRET_ACCESS_KEY: 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
+  AWS_REGION: us-west-2
+
+  # APILAYER configuration
+  APILAYER_HOST: 'http://apilayer.net/api'
+  APILAYER_LIVE_URI: '/live'
+  APILAYER_ACCESS_KEY: "5c11cd2ba7694a58b41e41cd2916eceb"
+
+  # Stripe configuration
+  stripe_secret_key: 'sk_test_d5Yy0gi4fsMbERNeU9lWJb3V'
+  stripe_publishable_key: 'pk_test_idVcTQhmG9oYcwz9iX07soWj'
+

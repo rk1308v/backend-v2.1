@@ -1,0 +1,2121 @@
+swagger: '2.0'
+info:
+  description: >-
+    SMX api description.
+  version: 1.0.0
+  title: MoneyApi
+  termsOfService: ''
+  contact:
+    email: 
+host: 107.22.146.137
+basePath: /api/v1
+tags:
+  - name: activity
+    description: Activity
+  - name: authentication
+    description: Authentication
+  - name: card
+    description: Card
+  - name: contact
+    description: Contact
+  - name: country
+    description: Country
+  - name: kyc
+    description: KYC
+  - name: notification
+    description: Notification
+  - name: profile
+    description: Profile
+  - name: registration
+    description: Registration
+  - name: transaction
+    description: Transaction
+  - name: user
+    description: User
+  
+schemes:
+  - http
+
+securityDefinitions:
+  X-API-APIKEY:
+    name: X-API-APIKEY
+    in: header
+    description: logged in user api key
+    type: apiKey
+
+paths:
+  /activities:
+    get:
+      tags:
+        - activity
+      summary: Get the list of user activities
+      description: The endpoint will get the list of user activities in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: query
+          name: offset
+          type: integer
+        - in: query
+          name: count
+          type: integer
+      responses:
+        '200':
+          description: List of user activities
+          schema:
+            $ref: '#/definitions/Activities'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /activities/friend_activities:
+    get:
+      tags:
+        - activity
+      summary: Get the list of friends activities
+      description: The endpoint will get the list of friends activities in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: query
+          name: friend_id
+          type: integer
+        - in: query
+          name: offset
+          type: integer
+        - in: query
+          name: count
+          type: integer
+      responses:
+        '200':
+          description: List of friends activities
+          schema:
+            $ref: '#/definitions/FriendActivities'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /login:
+    post:
+      tags:
+        - authentication
+      summary: Login a user
+      description: >-
+        This endpoint will authenticate a user with SMX system and will
+        return the auth details
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          description: Login request object
+          required: true
+          schema:
+            $ref: '#/definitions/LoginBody'
+      responses:
+        '200':
+          description: Successful authentication
+          schema:
+            $ref: '#/definitions/UserLogin'
+        '401':
+          $ref: '#/responses/401'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+  /logout:
+    delete:
+      tags:
+        - authentication
+      summary: Logout a user
+      description: >-
+        This endpoint will logout a user from SMX system and will return the
+        response of success and failures
+      produces:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          description: Logout request object
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+      responses:
+        '200':
+          description: Successful logout
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /update_password:
+    patch:
+      tags:
+        - authentication
+      summary: Update user password
+      description: The endpoint will validate the current user for the update password for the user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          description: Validate current user for update password
+          required: true
+          schema:
+            $ref: '#/definitions/PasswordBody'
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /reset_password:
+    post:
+      tags:
+        - authentication
+      summary: Forgot user password
+      description: This endpoint will send an email with the instructions to reset the user password
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          description: Forgot password object
+          schema:
+            $ref: '#/definitions/ForgotPasswordBody'
+          required: true
+      responses:
+        '201':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /validate_password_code:
+    post:
+      tags:
+        - authentication
+      summary: Validate code for forget password
+      description: The endpoint will validate the code for the forget password for the user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          description: Validate code for forget password
+          schema:
+            $ref: '#/definitions/VerifyCodeBody'
+          required: true
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /update_password_with_code:
+    patch:
+      tags:
+        - authentication
+      summary: Update password with code
+      description: The endpoint will validate the code for the update password for the user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          description: Validate code for update password
+          schema:
+            $ref: '#/definitions/VerifyPasswordBody'
+          required: true
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /create_card:
+    post:
+      tags:
+        - card
+      summary: Create card of user
+      description: The endpoint will create card of user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+              - type: object
+                properties:
+                  user:
+                    properties:
+                      card_token:
+                        type: string
+                        description: Stripe card token
+                        example: "card_1EMWUOByiHzYy6IbLJhR1ueD"
+      responses:
+        '200':
+          description: Card is added successfully
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  card:
+                    type: object
+                    example: card details
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /delete_card:
+    post:
+      tags:
+        - card
+      summary: Delete card of user
+      description: The endpoint will delete card of user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+              - type: object
+                properties:
+                  user:
+                    properties:
+                      card_token:
+                        type: string
+                        description: Stripe card token
+                        example: "card_1EMWUOByiHzYy6IbLJhR1ueD"
+      responses:
+        '200':
+          description: Card deleted successfully
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  card:
+                    type: object
+                    example: card details
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /get_cards:
+    post:
+      tags:
+        - card
+      summary: Get cards of user
+      description: The endpoint will get cards of user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+      responses:
+        '200':
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  card:
+                    type: object
+                    example: card details
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /create_stripe_customer:
+    post:
+      tags:
+        - card
+      summary: Add customer to stripe
+      description: The endpoint will add customer to stripe in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+              - type: object
+                properties:
+                  user:
+                    properties:
+                      src_token:
+                        type: string
+                        description: Stripe source token
+                        example: "tok_1EHOvmByiHzYy6Ibhww9xv3k"
+      responses:
+        '200':
+          description: User added to stripe
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  customer_token:
+                    type: string
+                    example: "@registration['id']"
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /load_money:
+    post:
+      tags:
+        - card
+      summary: Add money to stripe
+      description: The endpoint will add money to stripe in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+              - type: object
+                properties:
+                  user:
+                    properties:
+                      amount:
+                        type: number
+                        example: "10"
+                      source:
+                        type: string
+                        description: Stripe source token
+                        example: "tok_1EHOvmByiHzYy6Ibhww9xv3k"
+      responses:
+        '200':
+          description: Charged successfully
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /users/sync_contacts:
+    post:
+      tags:
+        - contact
+      summary: Sync contacts
+      description: The endpoint will sync contacts in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+              - type: object
+                properties:
+                  user:
+                    properties:
+                      contacts:
+                        type: array
+                        items:
+                          allOf:
+                            - type: object
+                              properties:
+                                name:
+                                  type: string
+                                telephone:
+                                  type: string
+                                email:
+                                  type: string
+      responses:
+        '200':
+          description: User contact sync completed successfully
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /users/user_smx_contacts:
+    get:
+      tags:
+        - contact
+      summary: Get the list of user SMX contacts
+      description: The endpoint will get the list of users by passing offset and the count. If you want a load of 20 users, then you call with offset=0 and count=20 for the first load. The second load will be offset=20
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: query
+          name: offset
+          type: integer
+        - in: query
+          name: count
+          type: integer
+      responses:
+        '200':
+          description: List of user SMX contacts
+          schema:
+            $ref: '#/definitions/Contacts'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /users/user_non_smx_contacts:
+    get:
+      tags:
+        - contact
+      summary: Get the list of user non SMX contacts
+      description: The endpoint will get the list of users by passing offset and the count. If you want a load of 20 users, then you call with offset=0 and count=20 for the first load. The second load will be offset=20
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: query
+          name: offset
+          type: integer
+        - in: query
+          name: count
+          type: integer
+      responses:
+        '200':
+          description: List of user non SMX contacts
+          schema:
+            $ref: '#/definitions/NonContacts'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /countries:
+    get:
+      tags:
+        - country
+      summary: Get the list of countries
+      description: The endpoint will get the list of countries in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      responses:
+        '200':
+          description: List of countries
+          schema:
+            $ref: '#/definitions/Countries'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /states:
+    get:
+      tags:
+        - country
+      summary: Get the list of states
+      description: The endpoint will get the list of states in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: country[c]
+          description: Alpha3 code of country
+          type: string
+          example: "usa"
+          required: true
+      responses:
+        '200':
+          description: List of states
+          schema:
+            $ref: '#/definitions/States'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /countries/countries_info:
+    get:
+      tags:
+        - country
+      summary: Get the list of countries with info
+      description: The endpoint will get the list of countries with info in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      responses:
+        '200':
+          description: List of countries with info
+          schema:
+            $ref: '#/definitions/CountriesInfo'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /countries/country_info:
+    get:
+      tags:
+        - country
+      summary: Get the country info
+      description: The endpoint will get the detail of country info in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: name
+          description: Name of the country
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Country info detail
+          schema:
+            properties:
+              country:
+                $ref: '#/definitions/CountryResponse'
+        '401':
+          $ref: '#/responses/401'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+  /countries/smx_countries:
+    get:
+      tags:
+        - country
+      summary: Get the list of SMX countries
+      description: The endpoint will get the detail list of SMX countries in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      responses:
+        '200':
+          description: List of SMX countries
+          schema:
+            $ref: '#/definitions/Countries'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /countries/flag:
+    get:
+      tags:
+        - country
+      summary: Get the country flag
+      description: The endpoint will get the country flag in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: name
+          description: Name of the country
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Country flag
+          schema:
+            $ref: '#/definitions/CountryFlagResponse'
+        '401':
+          $ref: '#/responses/401'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+  /countries/update_flag:
+    patch:
+      tags:
+        - country
+      summary: Update country flag
+      description: The endpoint will update flag of country in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            properties:
+              country:
+                properties:
+                  name:
+                    type: string
+                    description: Country name
+                    example: "Zimbabwe"
+                  flag:
+                    type: string
+                    description: Country flag
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /upload_document:
+    post:
+      tags:
+        - kyc
+      summary: Upload kyc document
+      description: The endpoint will upload kyc document in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: formData
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: formData
+          name: user[:kyc_document]
+          description: kyc document to upload
+          required: true
+          type: file
+      responses:
+        '201':
+          description: Successful kyc document uploaded
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /notifications:
+    get:
+      tags:
+        - notification
+      summary: Get the list of user notifications
+      description: The endpoint will get the list of user notifications in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: query
+          name: offset
+          type: integer
+        - in: query
+          name: count
+          type: integer
+      responses:
+        '200':
+          description: List of user notifications
+          schema:
+            $ref: '#/definitions/Notifications'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /notifications/update_notification:
+    put:
+      tags:
+        - notification
+      summary: Update user notification
+      description: The endpoint will update user notification in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+              - type: object
+                properties:
+                  notification:
+                    properties:
+                      id:
+                        type: integer
+                        example: 299
+                      notice_type:
+                        type: string
+                        example: "TransferNotification"
+                      option:
+                        type: string
+                        example: "Pay"
+      responses:
+        '201':
+          description: Your transaction was successful
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /notifications/notifications_count:
+    get:
+      tags:
+        - notification
+      summary: Get total count of unread notifications for the last 30 days
+      description: The endpoint will get total count of unread notifications for the last 30 days in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+      responses:
+        '200':
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Notification count
+                    example: 4
+        '401':
+          $ref: '#/responses/401'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+  /users/profile:
+    get:
+      tags:
+        - profile
+      summary: Get the profile detail
+      description: The endpoint will get the detail of profile in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+      responses:
+        '200':
+          description: Profile detail
+          schema:
+            $ref: '#/definitions/ProfileResponse'
+        '401':
+          $ref: '#/responses/401'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+  /users/find_user:
+    get:
+      tags:
+        - profile
+      summary: Get the list of users
+      description: The endpoint will get the list of users in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: query
+          name: input
+          description: Input key to search user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: List of profiles
+          schema:
+            $ref: '#/definitions/Profiles'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /pictures/profile_picture:
+    get:
+      tags:
+        - profile
+      summary: Get the profile picture
+      description: The endpoint will get the picture of profile in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+      responses:
+        '200':
+          description: Profile picture
+          schema:
+            $ref: '#/definitions/PictureResponse'
+        '401':
+          $ref: '#/responses/401'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+  /pictures/update_picture:
+    patch:
+      tags:
+        - profile
+      summary: Update a profile picture
+      description: The endpoint will update a profile picture in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: formData
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: formData
+          name: user[:avatar]
+          description: Avatar file to upload
+          required: true
+          type: file
+      responses:
+        '201':
+          description: Successful picture uploaded
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /signup:
+    post:
+      tags:
+        - registration
+      summary: Add a user
+      description: The endpoint will add a user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          description: User request object
+          schema:
+            $ref: '#/definitions/UserBody'
+          required: true
+      responses:
+        '201':
+          description: User created
+          schema:
+            $ref: '#/definitions/CreateUserResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /validate_signup_params:
+    post:
+      tags:
+        - registration
+      summary: Validate signup params
+      description: The endpoint will validate signup params in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          description: User request object
+          schema:
+            $ref: '#/definitions/UserBody'
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /telephone_verification:
+    post:
+      tags:
+        - registration
+      summary: Telephone verification
+      description: The endpoint will perform telephone verification in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            properties:
+              user:
+                properties:
+                  telephone:
+                    type: string
+                    description: Telephone number
+                    required: true
+      responses:
+        '200':
+          description: Verification response
+          schema:
+            $ref: '#/definitions/TelephoneVerificationResponse'
+        '400':
+          schema:
+            properties:
+              error:
+                type: string
+                example: Telephone cannot be blank
+        '500':
+          $ref: '#/responses/500'
+  /update_country:
+    patch:
+      tags:
+        - registration
+      summary: Update country
+      description: The endpoint will update country of the user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+              - type: object
+                properties:
+                  user:
+                    properties:
+                      name:
+                        type: string
+                        description: Name of the country
+                        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /update_email:
+    patch:
+      tags:
+        - registration
+      summary: Update email
+      description: The endpoint will update email for the user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/EmailBody'
+          required: true
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /update_username:
+    patch:
+      tags:
+        - registration
+      summary: Update username
+      description: The endpoint will update username for the user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+              - type: object
+                properties:
+                  user:
+                    properties:
+                      username:
+                        type: string
+                        description: Username
+                        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /update_telephone:
+    patch:
+      tags:
+        - registration
+      summary: Update telephone
+      description: The endpoint will update telephone for the user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            allOf:
+              - $ref: '#/definitions/AuthToken'
+              - type: object
+                properties:
+                  user:
+                    properties:
+                      telephone:
+                        type: string
+                        description: Telephone
+                        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /users/balance:
+    get:
+      tags:
+        - user
+      summary: Get user balance
+      description: The endpoint will get user balance in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+      responses:
+        '200':
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  balance:
+                    properties:
+                      amount:
+                        type: string
+                        example: "50.0"
+                      currency:
+                        type: string
+                        example: "USD"
+        '401':
+          $ref: '#/responses/401'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+  /users/beneficiaries:
+    get:
+      tags:
+        - user
+      summary: Get the list of user beneficiaries
+      description: The endpoint will get the list of user beneficiaries in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: query
+          name: offset
+          type: integer
+        - in: query
+          name: count
+          type: integer
+      responses:
+        '200':
+          description: List of user beneficiaries
+          schema:
+            $ref: '#/definitions/Beneficiaries'
+        '401':
+          $ref: '#/responses/401'
+        '500':
+          $ref: '#/responses/500'
+  /users/get_user:
+    get:
+      tags:
+        - user
+      summary: Get user
+      description: The endpoint will get user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+        - in: query
+          name: user[user_id]
+          type: integer
+        - in: query
+          name: user[telephone]
+          type: string
+      responses:
+        '200':
+          description: user detail
+          schema:
+            $ref: '#/definitions/UserResponse'
+        '401':
+          $ref: '#/responses/401'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+  /user_transactions/send_money:
+    post:
+      tags:
+        - transaction
+      summary: Send money to a user
+      description: The endpoint will send money to a user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/SendMoneyBody'
+      responses:
+        '200':
+          description: Send money successful response
+          schema:
+            allOf:
+              - type: object
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /user_transactions/request_money:
+    post:
+      tags:
+        - transaction
+      summary: Request money from a user
+      description: The endpoint will request money from a user in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/RequestMoneyBody'
+      responses:
+        '200':
+          description: Your request was successful
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        '400':
+          $ref: '#/responses/400'
+        '500':
+          $ref: '#/responses/500'
+  /user_transactions/{id}:
+    get:
+      tags:
+        - transaction
+      summary: Get transaction data
+      description: The endpoint will get the detail of transaction data in SMX system
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      security:
+        - X-API-APIKEY: []
+      parameters:
+        - in: query
+          name: auth_token
+          description: Auth token of the user
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+      responses:
+        '200':
+          description: Transaction data
+          schema:
+            allOf:
+              - type: object
+                properties:
+                  transaction:
+                    type: object
+                    example: transaction detail
+        '401':
+          $ref: '#/responses/401'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+
+definitions:
+  AuthToken:
+    type: object
+    required:
+      - auth_token
+    properties:
+      auth_token:
+        type: string
+        description: user api key
+  Email:
+    type: object
+    required:
+      - email
+    properties:
+      email:
+        type: string
+        description: Email Id
+        example: test@email.com
+  OldPassword:
+    type: object
+    required:
+      - old password
+    properties:
+      old_password:
+        type: string
+        description: Password
+        example: test@123
+  Password:
+    type: object
+    required:
+      - password
+    properties:
+      password:
+        type: string
+        description: Password
+        example: test@123
+  PasswordConfimation:
+    type: object
+    required:
+      - password confirmation
+    properties:
+      password_confirmation:
+        type: string
+        description: Password
+        example: test@123
+  DeviceId:
+    type: object
+    required:
+      - password
+    properties:
+      device_id:
+        type: string
+        description: DeviceId
+        example: 123
+  FirstName:
+    type: object
+    required:
+      - first name
+    properties:
+      first_name:
+        type: string
+        description: First Name
+        example: Jho
+  LastName:
+    type: object
+    required:
+      - last name
+    properties:
+      last_name:
+        type: string
+        description: Last Name
+        example: Avery
+  DateOfBirth:
+    type: object
+    required:
+      - date of birth
+    properties:
+      date_of_birth:
+        type: string
+        description: Date of birth
+        example: "01-02-2002"
+  Telephone:
+    type: object
+    required:
+      - telephone
+    properties:
+      telephone:
+        type: string
+        description: Telephone
+        example: "919623451686"
+  UserName:
+    type: object
+    required:
+      - user_name
+    properties:
+      user_name:
+        type: string
+        description: User name
+        example: "amol.aher"
+  Country:
+    type: object
+    required:
+      - country
+    properties:
+      country:
+        type: string
+        description: Country
+        example: "United States"
+  State:
+    type: object
+    required:
+      - state
+    properties:
+      state:
+        type: string
+        description: State
+        example: "New York"
+  Code:
+    type: object
+    required:
+      - code
+    properties:
+      code:
+        type: string
+        description: Code
+        example: 123456
+  ObjectID:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Unique identifier
+        example: 1
+  UserLogin:
+    allOf:
+      - type: object
+        properties:
+          auth_token:
+            type: string
+            description: User authorization token
+            example: >-
+              kCZXno8b2tX8pzbsZMZJkEjX
+  Activity:
+    properties:
+      activity:
+        type: string
+        example: "Sent to david.bale2"
+      amount:
+        properties:
+          value:
+            type: string
+            example: "50.0"
+          currency:
+            type: string
+            example: "usd"
+      status:
+        type: string
+        example: "Completed"
+      date:
+        type: string
+        format: date-time
+        example: '26 Jun 22:01'
+  Activities:
+    properties:
+      activities:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/ObjectID'
+            - $ref: '#/definitions/Activity'
+            - type: object
+              properties:
+                smx_transaction_id:
+                  type: integer
+                  example: 1
+  FriendActivities:
+    properties:
+      activities:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/ObjectID'
+            - $ref: '#/definitions/Activity'
+            - type: object
+              properties:
+                description:
+                  type: string
+                sender_name:
+                  type: string
+                  example: "FirstName0 LastName0"
+                receiver_name:
+                  type: string
+                  example: "FirstName1 LastName1"
+                transaction_type:
+                  type: integer
+                  example: 0
+  LoginBody:
+    allOf:
+      - $ref: '#/definitions/DeviceId'
+      - type: object
+        properties:
+          user:
+            allOf:
+              - $ref: '#/definitions/Email'
+              - $ref: '#/definitions/Password'
+  UserBody:
+    properties:
+      user:
+        allOf:
+          - $ref: '#/definitions/Email'
+          - $ref: '#/definitions/FirstName'
+          - $ref: '#/definitions/LastName'
+          - $ref: '#/definitions/Country'
+          - $ref: '#/definitions/Password'
+          - $ref: '#/definitions/PasswordConfimation'
+          - $ref: '#/definitions/Telephone'
+          - $ref: '#/definitions/DateOfBirth'
+          - $ref: '#/definitions/State'
+  EmailBody:
+    allOf:
+      - $ref: '#/definitions/AuthToken'
+      - type: object
+        properties:
+          user:
+            allOf:
+              - $ref: '#/definitions/Email'
+  CreateUserResponse:
+    allOf:
+      - $ref: '#/definitions/Email'
+      - $ref: '#/definitions/Name'
+  ForgotPasswordBody:
+    properties:
+      user:
+        allOf:
+          - $ref: '#/definitions/Email'
+  VerifyCodeBody:
+    properties:
+      user:
+        allOf:
+          - $ref: '#/definitions/Email'
+          - $ref: '#/definitions/Code'
+  VerifyPasswordBody:
+    properties:
+      user:
+        allOf:
+          - $ref: '#/definitions/Email'
+          - $ref: '#/definitions/Code'
+          - $ref: '#/definitions/Password'
+          - $ref: '#/definitions/PasswordConfimation'
+  PasswordBody:
+    allOf:
+      - $ref: '#/definitions/AuthToken'
+      - type: object
+        properties:
+          user:
+            allOf:
+              - $ref: '#/definitions/OldPassword'
+              - $ref: '#/definitions/Password'
+              - $ref: '#/definitions/PasswordConfimation'
+  ProfileBody:
+    allOf:
+      - $ref: '#/definitions/Email'
+      - $ref: '#/definitions/FirstName'
+      - $ref: '#/definitions/LastName'
+      - $ref: '#/definitions/Country'
+      - $ref: '#/definitions/Telephone'
+      - $ref: '#/definitions/UserName'
+      - type: object
+        properties:
+          phone_verified:
+            type: boolean
+            description: Phone verify status
+          email_verified:
+            type: boolean
+            description: Email verify status
+          stripe_customer_id:
+            type: string
+            description: Stripe customer id
+          kyc_verified:
+            type: boolean
+            description: KYC verify status
+          country_code:
+            type: string
+            description: Country code
+            example: "1"
+          international_prefix:
+            type: string
+            description: International prefix
+            example: "011"
+          national_destination_code_lengths:
+            type: integer
+            description: National destination code lengths
+            example: 3
+          national_number_lengths:
+            type: integer
+            description: National number lengths
+            example: 10
+          country_flag:
+            type: string
+            description: Country flag 
+  ProfileResponse:
+    allOf:
+      - $ref: '#/definitions/ObjectID'
+      - $ref: '#/definitions/ProfileBody'
+      - type: object
+        properties:
+          picture:
+            $ref: '#/definitions/PictureResponse'
+  UpdateProfileBody:
+    allOf:
+      - $ref: '#/definitions/ProfileBody'
+  Profiles:
+    properties:
+      user:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/ObjectID'
+            - $ref: '#/definitions/FirstName'
+            - $ref: '#/definitions/LastName'
+            - $ref: '#/definitions/Telephone'
+            - $ref: '#/definitions/UserName'
+            - type: object
+              properties:
+                avatar:
+                  type: string
+                  description: S3 bucket url of the profile picture
+  PictureResponse:
+    allOf:
+      - type: object
+        properties:
+          updated_at:
+            type: string
+            description: Picture update datetime
+            format: date-time
+            example: '2021-07-15T18:08:36.189Z'
+          avatar:
+            type: string
+            description: S3 bucket url of the profile picture
+  Contacts:
+    properties:
+      contacts:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/ObjectID'
+            - $ref: '#/definitions/FirstName'
+            - $ref: '#/definitions/LastName'
+            - $ref: '#/definitions/UserName'
+            - type: object
+              properties:
+                avatar:
+                  type: string
+                  description: S3 bucket url of the profile picture
+  NonContacts:
+    type: array
+    items:
+      allOf:
+        - $ref: '#/definitions/Telephone'
+        - $ref: '#/definitions/Email'
+        - type: object
+          properties:
+            smx_user:
+              type: boolean
+              example: false
+            name:
+              type: string
+              example: "team cloud"
+  CountryResponse:
+    allOf:
+      - type: object
+        properties:
+          name:
+            type: string
+            description: Country name
+            example: "Benin"
+          alpha_code:
+            type: string
+            description: Alpha code
+            example: "BEN"
+          country_code:
+            type: string
+            description: Country code
+            example: "1"
+          phone_number_lengths:
+            type: integer
+            description: Phone number length
+            example: 8
+          flag:
+            type: string
+            description: Country flag
+  Countries:
+    properties:
+      countries:
+        type: array
+        items:
+          $ref: '#/definitions/CountryResponse'
+  CountriesInfo:
+    properties:
+      countries:
+        type: array
+        items:
+          allOf:
+            - type: object
+              properties:
+                name:
+                  type: string
+                  description: Country name
+                  example: "Benin"
+                alpha_code:
+                  type: string
+                  description: Alpha code
+                  example: "BEN"
+                country_code:
+                  type: string
+                  description: Country code
+                  example: "1"
+                phone_number_lengths:
+                  type: integer
+                  description: Phone number length
+                  example: 8
+  CountryFlagResponse:
+    allOf:
+      - type: object
+        properties:
+          updated_at:
+            type: string
+            description: Country flag update datetime
+            format: date-time
+            example: '2021-07-15T18:08:36.189Z'
+          flag:
+            type: string
+            description: Country flag
+  States:
+    properties:
+      states:
+        type: array
+        items:
+          allOf:
+            - type: object
+              properties:
+                name:
+                  type: string
+                  description: State name
+                  example: "Alaska"
+  TelephoneVerificationResponse:
+    allOf:
+      - type: object
+        properties:
+          message:
+            type: string
+            example: "Verification code sent"
+          verification_code:
+            type: integer
+            description: Verification code
+            example: 961732
+          code_sent_at:
+            type: string
+            description: Verification code sent datetime
+            format: date-time
+            example: '2021-07-20T22:25:15.380+05:30'
+  Notifications:
+    properties:
+      notifications:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/ObjectID'
+            - type: object
+              properties:
+                notice:
+                  type: string
+                  example: "david.balea sent you 50.0"
+                notice_type:
+                  type: string
+                  example: "TransferNotification"
+                date:
+                  type: string
+                  format: date-time
+                  example: '26 Jun 22:01'  
+  Beneficiaries:
+    properties:
+      beneficiaries:
+        type: array
+        items:
+          allOf:
+            - $ref: '#/definitions/ObjectID'
+            - type: object
+              properties:
+                recipient_name:
+                  type: string
+                  example: "amol.aher"
+                telephone:
+                  type: string
+                  example: "254701876564"
+                avatar:
+                  type: string
+                  description: S3 bucket url of the profile picture
+                created_date:
+                  type: string
+                  format: date-time
+                  example: '2019-04-18T15:58:24.626Z'
+  SendMoneyBody:
+    allOf:
+      - $ref: '#/definitions/AuthToken'
+      - type: object
+        properties:
+          user:
+            allOf:
+              - type: object
+                properties:
+                  is_confirmed:
+                    type: string
+                    example: "0/1"
+                  recipient_id:
+                    type: string
+                    example: "3"
+                  recipient_name:
+                    type: string
+                    example: "John Doe"
+                  recipient_telephone:
+                    type: string
+                    example: "921-432988-988"
+                  amount:
+                    type: number
+                    example: "50"
+                  country_code:
+                    type: integer
+                    example: 123
+                  payment_method:
+                    type: string
+                    example: "0/1/2"
+                  card_type: 
+                    type: string
+                    example: "Visa / Mastercard"
+                  source_token:
+                    type: string 
+                    example: "card_1EHOvmByiHzYy6IbuOzpiUkM"
+                  payment_method_number:
+                    type: string 
+                    example: "4532"
+                  description:
+                    type: string 
+                    example: "For groceries"
+  RequestMoneyBody:
+    allOf:
+      - $ref: '#/definitions/AuthToken'
+      - type: object
+        properties:
+          user:
+            allOf:
+              - type: object
+                properties:
+                  recipient_id:
+                    type: string
+                    example: "3"
+                  amount:
+                    type: number
+                    example: "50"
+                  description:
+                    type: string 
+                    example: "For groceries"
+  UserResponse:
+    properties:
+      user_data:
+        allOf:
+          - $ref: '#/definitions/FirstName'
+          - $ref: '#/definitions/LastName'
+          - $ref: '#/definitions/Country'
+          - $ref: '#/definitions/Telephone'
+          - $ref: '#/definitions/DateOfBirth'
+          - $ref: '#/definitions/State'
+          - type: object
+            properties:
+              kyc_verified:
+                type: boolean
+                description: KYC verify status
+              country_code:
+                type: string
+                description: Country code
+                example: "1"
+              international_prefix:
+                type: string
+                description: International prefix
+                example: "011"
+              national_destination_code_lengths:
+                type: integer
+                description: National destination code lengths
+                example: 3
+              national_number_lengths:
+                type: integer
+                description: National number lengths
+                example: 10
+              country_flag:
+                type: string
+                description: Country flag
+              avatar_url:
+                type: string
+                description: S3 bucket url of the profile picture
+              is_benificiary:
+                type: integer
+  Error:
+    type: object
+    required:
+      - errors
+    properties:
+      errors:
+        type: array
+        items:
+          type: string
+          description: error message
+  SuccessResponse:
+    type: object
+    required:
+      - status
+    properties:
+      status:
+        type: string
+        description: Sucecess message
+
+parameters:
+  Authorization:
+    in: header
+    name: Authorization
+    type: string
+    required: true
+    description: Authorization Token
+  PathUUID:
+    in: path
+    name: id
+    type: string
+    required: true
+    description: UUID of the object
+
+responses:
+  '400':
+    description: Input invalid or Bad Request
+    schema:
+      $ref: '#/definitions/Error'
+  '401':
+    description: Token Invlaid
+    schema:
+      $ref: '#/definitions/Error'
+  '404':
+    description: Resource not found
+    schema:
+      $ref: '#/definitions/Error'
+  '500':
+    description: Internal Server error
+    schema:
+      $ref: '#/definitions/Error'

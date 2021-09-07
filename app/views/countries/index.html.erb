@@ -1,0 +1,10 @@
+<h1>S3 Image app</h1>
+ 
+<%= link_to "Add new post", new_post_path %>
+ 
+<br>
+ 
+<% @posts.each do |post| %>
+	<%= post.title %>
+	<%= image_tag post.image.url(:med) %>
+<% end %>

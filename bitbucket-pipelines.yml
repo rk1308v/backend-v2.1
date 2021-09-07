@@ -1,0 +1,26 @@
+# image: ruby:2.5.1
+# clone:
+#   depth: full
+# pipelines:
+#   branches:
+#     development:
+#       - step:
+#           deployment: staging
+#           caches:
+#             - bundler
+#           script:
+#             - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_DEV.git HEAD:development
+#             - bundle install
+#             - rake db:migrate
+#             - rake db:seed
+#     master:
+#       - step:
+#           deployment: production
+#           caches:
+#             - bundler
+#           script:
+#             - cat deploy-to-master.sh | ssh -i ~/.ssh/config root@134.209.114.99
+#             - echo "Deploy finished"
+# definitions:
+#   caches:
+#     bundler: ./vendor

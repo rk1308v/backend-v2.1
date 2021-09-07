@@ -1,0 +1,5 @@
+Hi <%= @user.first_name.capitalize %>,
+
+You have requested an email change. To verify your new email, click the URL below.
+
+<%=  link_to "confirm", confirm_email_url(@user.email_token)%>

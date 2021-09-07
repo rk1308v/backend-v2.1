@@ -1,0 +1,28 @@
+<table class="table table-borderless">
+    <tbody>
+        <tr>
+            <th scope="col" colspan='2' style="text-align: center">
+                <b><p>Dear <%= @user.full_name %>,</p></b>
+                <p>We have detected a new device sign-in to your SMX account associated with <%= @user.email %> on <%= DateTime.now.strftime("%A, %B %e %Y %I:%MM:%S %p %Z")%> from IP: <%= @remote_ip %></p>
+            </th>
+        </tr>
+        <tr>
+            <th scope="row">Device</th>
+            <td>iPhone</td>
+        </tr>
+        <tr>
+            <th scope="col" colspan='2' style="text-align: center">
+                If this wasn't you, we suggest you &nbsp;
+                <%= link_to password_update_form_url(token: @user.authtoken.token, e: "#{EncryptDecryptService.new(@user.email).encrypt}") do %>
+                    <%= content_tag :span, "Reset", :class => "red_button" %>    
+                <% end %> &nbsp; your account password.
+            </th>
+        </tr>
+        <tr>
+            <th scope="row" style="text-align: left">
+                <p>Regards,</p>
+                <p>SMX Team</p>
+            </th>
+        </tr>
+    </tbody>
+</table>

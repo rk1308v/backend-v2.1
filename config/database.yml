@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+
+staging:
+  <<: *default
+  encoding: utf8
+  username: postgres
+  password: 12345678
+  database: money_api_development
+
+development:
+  adapter: postgresql
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: money_api_development
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: money_api_production
+  username: root
+  password: aCt4=Za)-zBj

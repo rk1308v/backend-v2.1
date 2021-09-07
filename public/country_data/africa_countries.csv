@@ -1,0 +1,83 @@
+REGION,COUNTRY,ORGANISATION NAMES,TERMINATION TYPE,SERVICE COVERAGE,AVAILABILITY,BUSINESS MODEL,PAYMENT SPEED,MAX  TRANSACTION AMOUNT,BENEFICIARY LOOKUP,TRANSFERTO COMMISSION (< $100),TRANSFERTO COMMISSION (>$100),MINIMUM COMMISSION
+AFRICA,Benin,Express Union International,Cash Pick Up,Major Branches,Under Integration,Commission on Principal,Real-time,"XOF 3,000,000 / Tx",None,1.75%,1.75%,US$ 1.50
+AFRICA,Benin,MTN,Mobile Money Account,MTN Mobile Money,In the roadmap,,,,,,,
+AFRICA,Benin,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Botswana,Orange,Mobile Money Account,Orange Money,Under Integration,Under Negotiation,,,,,,
+AFRICA,Burkina Faso,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Burundi ,Econet,Mobile Money Account,EcoCash,Live,Commission on Principal,,,,3.00%,3.00%,
+AFRICA,Burundi ,Lumitel,Mobile Money Account,Lumicash,In the roadmap,,,,,,,
+AFRICA,Cameroon,Express Union International,Cash Pick Up,Major Branches,Under Integration,Commission on Principal,Real-time,"XOF 3,000,000 / Tx",None,1.75%,1.75%,US$ 1.50
+AFRICA,Cameroon,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Cape Verde,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Central African Republic,Express Union International,Cash Pick Up,Major Branches,Under Integration,Commission on Principal,Real-time,"XOF 3,000,000 / Tx",None,1.75%,1.75%,US$ 1.50
+AFRICA,Chad,Express Union International,Cash Pick Up,Major Branches,Under Integration,Commission on Principal,Real-time,"XOF 3,000,000 / Tx",None,1.75%,1.75%,US$ 1.50
+AFRICA,Chad,Airtel,Mobile Money Account,Airtel Money,In the roadmap,,,,,,,
+AFRICA,Chad,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Chad,Tigo,Mobile Money Account,Tigo Money,In the roadmap,,,,,,,
+AFRICA,Congo,MTN,Mobile Money Account,MTN Mobile Money,In the roadmap,,,,,,,
+AFRICA,Congo,Airtel,Mobile Money Account,Airtel Money,In the roadmap,,,,,,,
+AFRICA,Congo,Express Union International,Cash Pick Up,Major Branches,Under Integration,Commission on Principal,Real-time,"XOF 3,000,000 / Tx",None,1.75%,1.75%,US$ 1.50
+AFRICA,Congo,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Congo (Democratic Republic of the),Express Union International,Cash Pick Up,Major Branches,Under Integration,Commission on Principal,Real-time,"USD 4,000",None,1.75%,1.75%,US$ 1.50
+AFRICA,Congo (Democratic Republic of the),Airtel,Mobile Money Account,Airtel Money,In the roadmap,,,,,,,
+AFRICA,Congo (Democratic Republic of the),Orange,Mobile Money Account,Orange Money,In the roadmap,,,,,,,
+AFRICA,Congo (Democratic Republic of the),Vodacom,Mobile Money Account,M-PESA ,In the roadmap,,,,,,,
+AFRICA,Egypt,Cash pick-up network,Cash Pick Up,Major Branches,In the roadmap,,,,,,,
+AFRICA,Egypt,Major Banks,Bank Account Deposits,Major Branches,In the roadmap,,,,,,,
+AFRICA,Ethiopia,HelloCash,Mobile Money Account,HelloCash,Live,Commission on Principal,Real-time,25000 ETB,"Discovery, Validation",1.50%,1.50%,US$ 1.00
+AFRICA,Gabon,Express Union International,Cash Pick Up,Major Branches,Under Integration,Commission on Principal,Real-time,"XOF 3,000,000 / Tx",None,1.75%,1.75%,US$ 1.50
+AFRICA,Gabon,Major Banks,Bank Account Deposits,Major Branches,In the roadmap,,,,,,,
+AFRICA,Gabon,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Ghana,MTN,Mobile Money Account,MTN Mobile Money,Live,Commission on Principal,Real-time,1000 GHC,,2.00%,2.00%,US$ 1.50
+AFRICA,Ghana,Airtel,Mobile Money Account,Airtel Money,Live,Commission on Principal,Real-time,253 USD,"Discovery, Validation",2.00%,2.00%,US$ 1.50
+AFRICA,Ghana,Tigo,Mobile Money Account,Tigo Cash,Live,,,,,,,
+AFRICA,Ghana,Vodafone,Mobile Money Account,M-PESA,In the roadmap,,,,,,,
+AFRICA,Ghana,All Banks,Mobile Money Account,Major Branches,Live,,,,,0.70%,0.70%,US$ 2.00
+AFRICA,Ghana,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Guinea,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Guinea-Bissau,MTN,Mobile Money Account,MTN Mobile Money,In the roadmap,,,,,,,
+AFRICA,Guinea-Bissau,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Ivory Coast,Moov,Mobile Money Account,Flooz,In the roadmap,,,,,,,
+AFRICA,Ivory Coast,MTN,Mobile Money Account,MTN Mobile Money,In the roadmap,,,,,,,
+AFRICA,Ivory Coast,Orange,Mobile Money Account,Orange Money,In the roadmap,,,,,,,
+AFRICA,Ivory Coast,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Kenya,Safaricom,Mobile Money Account,M-PESA,Live,Revenue share on Total Retail Commission (Fx + Fee),Real-time,"KES 70,000","Discovery, Validation",37%,37%,
+AFRICA,Kenya,All Banks,Bank Account Deposits,Major Branches,Live,Fixed fee,Real-time,No Limit,,US$2.00 ,US$2.00 ,US$2.00 
+AFRICA,Lesotho,Vodafone,Mobile Money Account,M-PESA,In the roadmap,,,,,,,
+AFRICA,Lesotho,Econet,Mobile Money Account,EcoCash,In the roadmap,,,,,,,
+AFRICA,Madagascar,Airtel,Mobile Money Account,Airtel Money,In the roadmap,,,,,,,
+AFRICA,Madagascar,Orange,Mobile Money Account,Orange Money,In the roadmap,,,,,,,
+AFRICA,Malawi,Airtel,Mobile Money Account,Airtel Money,Live,Commission on Principal,Real-time,"Emerald - 50000MWK
+Gold - 200000MWK
+Platinum - 750000MWK",None,1.50%,1.50%,US$ 1.50
+AFRICA,Malawi,TNM,Mobile Money Account,Mpamba Fesa,Under Integration,Under Negotiation,,,,,,
+AFRICA,Malawi,All Banks,Bank Account Deposits,Major Branches,In the roadmap,,,,,,,
+AFRICA,Mali,Orange,Mobile Money Account,Orange Money,In the roadmap,,,,,,,
+AFRICA,Mali,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Mauritania,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Mozambique,Vodafone,Mobile Money Account,M-PESA,In the roadmap,,,,,,,
+AFRICA,Mozambique,Mcel,Mobile Money Account,mKesh,In the roadmap,,,,,,,
+AFRICA,Mozambique,All Banks,Bank Account Deposits,Major Branches,In the roadmap,,,,,,,
+AFRICA,Niger,Airtel,Mobile Money Account,Airtel Money,In the roadmap,,,,,,,
+AFRICA,Niger,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,,None,1.50%,1.50%,US$ 0.40
+AFRICA,Nigeria,Paga,Mobile Money Account,Paga,Live,Fixed fee,Real-time,"NGN 100,000","Discovery, Validation",US$ 1.00,US$ 1.50,
+AFRICA,Nigeria,Major Banks,Bank Account Deposits,Major Branches,Live,Fixed fee,Real-time,"NGN 1,000,000",,US$ 2.00,US$ 2.00,US$ 2.00
+AFRICA,Rwanda,Tigo,Mobile Money Account,Tigo Cash,Under Integration,Revenue share on Total Retail Commission (Fx + Fee),,,,30.00%,30.00%,
+AFRICA,Rwanda,MTN,Mobile Money Account,MTN Mobile Money,Under Integration,Under Negotiation,,,,,,
+AFRICA,Senegal,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Senegal,Tigo,Mobile Money Account,Tigo Money,In the roadmap,,,,,,,
+AFRICA,Seychelles,Airtel,Mobile Money Account,Airtel Money,In the roadmap,,,,,,,
+AFRICA,Tanzania,Airtel,Mobile Money Account,Airtel Money,Under Integration,Commission on Principal,Real-time,"TZS 3,000,000",,1.50%,1.50%,US$ 1.50
+AFRICA,Tanzania,Tigo,Mobile Money Account,Tigo Money,Under Integration,Commission on Principal,Real-time,"TZS 3,000,000","Discovery, Validation",2.50%,2.50%,
+AFRICA,Tanzania,Vodacom,Mobile Money Account,M-PESA,Under Integration,Revenue share on Total Retail Commission (Fx + Fee),Real-time,"TZS 3,000,000","Discovery, Validation",37.00%,37.00%,
+AFRICA,Tanzania,Halotel,Mobile Money Account,Halopesa,In the roadmap,,,,,,,
+AFRICA,Tanzania,All Banks,Bank Account Deposits,"Major Branches, including KCB",In the roadmap,,,,,,,
+AFRICA,Togo,Wari,Cash Pick Up,Major Branches,Live,Commission on Principal,Real-time,No Limit,None,1.50%,1.50%,US$ 0.40
+AFRICA,Uganda,Major Banks,Bank Account Deposits,"Major Branches, including KCB",In the roadmap,,,,,,,
+AFRICA,Uganda,Airtel,Mobile Money Account,Airtel Money,Live,Commission on Principal,Real-time,"4000000 UGX, 1111 USD","Discovery, Validation",2.50%,2.50%,US$ 1.50
+AFRICA,Uganda,MTN,Mobile Money Account,MTN Mobile Money,Live,Commission on Principal,Real-time,"4000000 UGX, 1111 USD","Discovery, Validation",2.50%,2.50%,
+AFRICA,Zambia,Airtel,Mobile Money Account,Airtel Money,In the roadmap,,,,,,,
+AFRICA,Zambia,MTN,Mobile Money Account,MTN Mobile Money,In the roadmap,,,,,,,
+AFRICA,Zimbabwe,Major Banks,Bank Account Deposits,Major Branches,In the roadmap,,,,,,,
+AFRICA,Zimbabwe,Econet,Mobile Money Account,EcoCash Econet,Live,Commission on Principal,Real-time,2000USD,"Discovery, Validation",3%,3%,US$ 1.50
+AFRICA,Zimbabwe,Textacash,Mobile Money Account,Textacash,In the roadmap,,,,,,,

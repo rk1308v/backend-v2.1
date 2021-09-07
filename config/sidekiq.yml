@@ -1,0 +1,15 @@
+:concurrency: 1
+:pidfile: tmp/pids/sidekiq.pid
+:logfile: log/sidekiq.log
+staging:
+  :concurrency: 15
+production:
+  :concurrency: 10
+:queues:
+  - default
+  - smx_transaction_queue
+  - usa_transaction_queue
+  - international_transaction_queue
+  - segovia_status_queue
+  - segovia_response_queue
+  - transaction_status_queue
